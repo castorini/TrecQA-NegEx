@@ -69,15 +69,12 @@ if __name__ == '__main__':
   stoplist = None
 
 
-  train = 'jacana-qa-naacl2013-data-results/train.xml'
-  train_all = 'jacana-qa-naacl2013-data-results/train-all.xml'
+  train = 'data/train.xml'
+  train_all = 'data/train-all.xml'
   # train_files = [train, train_all]
   train_files = [train_all]
   for train in train_files:
     print train
-
-    dev = 'jacana-qa-naacl2013-data-results/dev.xml'
-    test = 'jacana-qa-naacl2013-data-results/test.xml'
 
     train_basename = os.path.basename(train)
     name, ext = os.path.splitext(train_basename)
@@ -87,7 +84,7 @@ if __name__ == '__main__':
 
     # all_fname = train
     all_fname = "/tmp/trec-merged.txt"
-    files = ' '.join([train, dev, test])
+    files = ' '.join([train])
     subprocess.call("/bin/cat {} > {}".format(files, all_fname), shell=True)
 
     # qids, questions, answers, labels = load_data(all_fname, stoplist)
@@ -98,15 +95,24 @@ if __name__ == '__main__':
     writeAnsF = open("allQAAnswers.topics.xml",'w')
     writeAnsListF = open("allQAAnswers.topics.list",'w')
 
+    writeQueF = open("allQAQuestions.topics.xml",'w')
+    writeQueListF = open("allQAQuestions.topics.list",'w')
+
     count = 0
     preQid = 0
-    for qid, ans, label in zip( qids, answers, labels):
+    for qid, ans, que, label in zip( qids, answers, questions, labels):
       count += 1
-      newXml = xml%(count,' '.join([str(x) for x in ans]))
-      # print qid, count,ans, label
-      writeAnsF.write(newXml)
+      ansXml = xml%(count,' '.join([str(x) for x in ans]))
+      writeAnsF.write(ansXml)
       writeAnsListF.write(qid+ '\t' +str(count)+ '\t'+str(label)  +'\t'+ ' '.join([str(x) for x in ans])+'\n')
+
+      queXml = xml%(count,' '.join([str(x) for x in que]))
+      writeQueF.write(queXml)
+      writeQueListF.write(qid+ '\t' +str(count)+ '\t'+str(label)  +'\t'+ ' '.join([str(x) for x in que])+'\n')
 
     writeAnsF.close()
     writeAnsListF.close()
+
+    writeQueF.close()
+    writeQueListF.close()
 
