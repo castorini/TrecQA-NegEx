@@ -4,9 +4,9 @@ This repo contains the implementation of extracting high quality training exampl
 + Haotian Zhang, Jinfeng Rao, Jimmy Lin and Mark Smucker. Automatically Extracting High-Quality Negative Examples for Answer Selection in Question Answering. SIGIR 2017.
 
 ## Prepare TrecQA DataSet 
-- Please download the TrecQA Dataset and refer to: https://github.com/castorini/data/tree/master/TrecQA
+Please download the TrecQA Dataset and refer to: https://github.com/castorini/data/tree/master/TrecQA
 
-- After parsing the TrecQA dataset, the `data/` directory contains the following splits in a pseudo-XML format:
+After parsing the TrecQA dataset, the `data/` directory contains the following splits in a pseudo-XML format:
 
 + `TRAIN.xml`
 + `TRAIN-ALL.xml`
@@ -14,8 +14,10 @@ This repo contains the implementation of extracting high quality training exampl
 + `TEST.xml`
 
 
-- Then extract answers for all the questions/answers in the train-all folder: 
+Then extract answers for all the questions/answers in the train-all folder: 
+
 ```$ python extractAnswer.py ```
+
 It will extract all the questions/answers from TrecQA train-all set and tranfer them to TREC topic format.
 
 
@@ -46,7 +48,7 @@ $ python splitTRECDoc.py --input=QAData/ --output=QADataFile/
  Trec -index ./QAindex -bm25  -topics allQAAnswers.topics.xml -output QAAns.bm25.txt
 ```
 
-2. Calculate the shingle matching scores for each document with corresponding question/answer.
+2. Calculate the shingle matching scores between each retrieved document with its corresponding question/answer.
 ```
 $ python shingleDistance.py --BM25Run=QAAns.bm25.txt --queryList=allQAAnswers.topics.list
 > shingledist.qaans.list

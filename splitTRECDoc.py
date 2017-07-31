@@ -88,9 +88,5 @@ if __name__=="__main__":
                         # sentence = unicode(sentence.strip(), errors='ignore')
                         writeF.write(docContent.strip())
                         writeF.close()
-                        
-                        
-                    
-
-                
+             
                 
