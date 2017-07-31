@@ -9,12 +9,13 @@ This repo contains the implementation of extracting high quality training exampl
 
 * After you uncompress each NegExSet by ```tar zxvf splitDocNegTopk.tgz```, you will see our negative examples for each (question,answer) pair. Each negative example is one sentence which is extracted from the same document containing the answer. Each example is named as:
 
-** `ID of answer` + `relevance` + `ID of doc` + `ID of sentence`
+    * `ID of answer` + `relevance` + `ID of doc` + `ID of sentence` (Seperated by `.`)
 
 * `ID of answer` is the ID of each answer. For train-all set of Trec-QA, there are 56082 (question,answer) pairs in total. The ID of the answers range from 1 to 56082.  
 * `relevance` is the relevance of each extracted example answer. If the relevance is 1, this example is the answer itself. Otherwise, it is one of the top k negative examples of the answer.
 * `ID of doc` is the ID of the document which contains the answer. All the negative examples sentences come from this document.
 * `ID of sentence` is the ID of the extracted sentence. The range of ID is decided by the number of sentences in the document. It starts from 0. And 0th sentence means it is the first sentence of the document.
+* For example, there is one negative example:`26877.0.FBIS4-45077.45`. The name of this example indicates that it is for the answer `26877`. The relevance is `0` so that it is a negative example. And it is the 46th sentence (ID of sentence starts from 0) of document `FBIS4-45077`. 
 
 ## Prepare TrecQA DataSet 
 Please download the TrecQA Dataset and refer to: https://github.com/castorini/data/tree/master/TrecQA
