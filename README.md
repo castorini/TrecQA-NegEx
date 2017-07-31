@@ -3,6 +3,11 @@ This repo contains the implementation of extracting high quality training exampl
 
 + Haotian Zhang, Jinfeng Rao, Jimmy Lin and Mark Smucker. Automatically Extracting High-Quality Negative Examples for Answer Selection in Question Answering. SIGIR 2017.
 
+
+## Negative Example DataSet 
+We provided top k={1,3,5,7} negative examples for each (question,answer) pair in the TrecQA train-all set. The different examples sets locate in `NegExSets/` folder and are named as `splitDocNegTopk.tgz`.
+
+
 ## Prepare TrecQA DataSet 
 Please download the TrecQA Dataset and refer to: https://github.com/castorini/data/tree/master/TrecQA
 
